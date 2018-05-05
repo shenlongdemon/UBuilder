@@ -42,6 +42,8 @@ class WebApi{
     static let GET_PROJECT_TYPES = "\(WebApi.HOST)/api/ubuilder/getProjectTypes"
     static let GET_USER_BY_ID = "\(WebApi.HOST)/api/ubuilder/getUserById"
     static let ADD_TASK = "\(WebApi.HOST)/api/ubuilder/addTask"
+    static let GET_PROJECT_BY_ID = "\(WebApi.HOST)/api/ubuilder/getProjectById"
+    static let GET_PROJECT_OR_TASK_BY_QRCODE = "\(WebApi.HOST)/api/ubuilder/getProjectOrTaskByQRCode"
 
     
     static func manager()-> SessionManager{
@@ -125,6 +127,39 @@ class WebApi{
                     completion(nil)
                 }
                 
+                
+        }
+    }
+    static func getProjectOrTaskByQRCode(code: String, completion: @escaping (_ project: Project?, _ task: Task?, _ isProjectNotTask: Bool )->Void){
+        let parameters: Parameters = [
+            "code": code
+        ]
+        let url = URL(string: WebApi.GET_PROJECT_OR_TASK_BY_QRCODE)
+        
+        WebApi.manager().request(url!, method: .post, parameters: parameters, encoding: URLEncoding.default)
+            .responseJSON { (data) in
+                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) as? ApiModel else {
+                    completion(nil, nil, false)
+                    return
+                }
+                
+                if(apiModel.Status == 1){
+                    let dic = apiModel.Data as! NSDictionary
+                    let isProjectNotTask: Bool = dic.object(forKey: "isProjectNotTask") as! Bool
+                    if isProjectNotTask {
+                        let project: Project? = Mapper<Project>().map(JSONObject: dic.object(forKey: "project"))
+                        completion(project,nil, true)
+                    }
+                    else {
+                        let task: Task? = Mapper<Task>().map(JSONObject: dic.object(forKey: "task"))
+                        let project: Project? = Mapper<Project>().map(JSONObject: dic.object(forKey: "project"))
+                        completion(project, task, false)
+                    }
+                    
+                }
+                else {
+                    completion(nil, nil, false)
+                }
                 
         }
     }
@@ -494,7 +529,26 @@ class WebApi{
                 
         }
     }
-    
+    static func getProjectById(id: String, completion: @escaping (_ project: Project?)->Void){
+        let url = URL(string: "\(WebApi.GET_PROJECT_BY_ID)?id=\(id)")
+        WebApi.manager().request(url!)
+            .responseJSON { (data) in
+                
+                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) else {
+                    completion(nil)
+                    return
+                }
+                
+                if(apiModel.Status == 1){
+                    let item : Project? = Mapper<Project>().map(JSONObject: apiModel.Data)
+                    completion(item)
+                }
+                else {
+                    completion(nil)
+                }
+                
+        }
+    }
     
 }
 

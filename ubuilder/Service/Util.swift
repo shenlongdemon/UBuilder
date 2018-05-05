@@ -78,12 +78,16 @@ class Util {
         history.position = Store.getPosition()!
         WebApi.getWeather(lat: history.position.coords.latitude, lon: history.position.coords.longitude) { (weather) in
             history.weather = weather
-            let nowDoublevaluseis = NSDate().timeIntervalSince1970
-            history.time = Int64(nowDoublevaluseis*1000)
+            
+            history.time = Util.getCurrentMilitime()
             completion(history)
         }
     }
-
+    static func getCurrentMilitime() -> Int64{
+        let nowDoublevaluseis = NSDate().timeIntervalSince1970
+        let time = Int64(nowDoublevaluseis*1000)
+        return time
+    }
     static func drawOMIDCode(str : String) -> UIImage{
         let size = 500
         UIGraphicsBeginImageContextWithOptions(CGSize(width: size, height: size), false, 0)
@@ -106,22 +110,22 @@ class Util {
         ctx.addEllipse(in: circleInsideRect)
         ctx.strokePath()
         // draw all lines
-        let ang = 360 / str.count
-        let STR = "__________-0123456789abcdefghijklmnopqrstuvwxyz";
+        let ang : CGFloat = 360.0 / CGFloat(str.count)
+        let STR = "___________________0__1__2__3__4__5__6__7__8__9";
         let ratio = (size - circleRadiusInside) / 2 / STR.count
-        var i = 0
-        let smallCircleRadius : CGFloat = 10.0
+        var i : CGFloat = 0.0
+        let smallCircleRadius : CGFloat = 3.0
         let blue = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
         for ch in str{
             let index = STR.index(of: ch)?.encodedOffset as! Int
             let center = CGPoint(x: size / 2, y: size / 2 )
-            let pathIn = UIBezierPath(arcCenter: center, radius: CGFloat(circleRadiusInside), startAngle: CGFloat(ang * i), endAngle:CGFloat(ang * i), clockwise: true)
+            let pathIn = UIBezierPath(arcCenter: center, radius: CGFloat(circleRadiusInside), startAngle: (ang * i), endAngle:(ang * i), clockwise: true)
             let inPoint = pathIn.currentPoint
             
-            let pathout = UIBezierPath(arcCenter: center, radius: CGFloat(circleRadiusInside + index * ratio), startAngle: CGFloat(ang * i), endAngle:CGFloat(ang * i), clockwise: true)
+            let pathout = UIBezierPath(arcCenter: center, radius: CGFloat(circleRadiusInside + index * ratio), startAngle: (ang * i), endAngle:(ang * i), clockwise: true)
             let outPoint = pathout.currentPoint
             // draw line
-            ctx.setLineWidth(5.0)
+            ctx.setLineWidth(1.0)
             ctx.setStrokeColor(UIColor.red.cgColor)
             ctx.move(to: inPoint)
             ctx.addLine(to: outPoint)
@@ -131,12 +135,12 @@ class Util {
             
             let circleInsideRect = CGRect(x: (outPoint.x - smallCircleRadius) ,y: (outPoint.y - smallCircleRadius), width: smallCircleRadius * 2,height: smallCircleRadius * 2)
             
-            ctx.setLineWidth(2.0)
+            ctx.setLineWidth(1.0)
             ctx.setStrokeColor(blue.cgColor)
             ctx.setFillColor(blue.cgColor)
             ctx.fillEllipse(in: circleInsideRect)
             
-            i += 1
+            i += 1.0
         }
         
         

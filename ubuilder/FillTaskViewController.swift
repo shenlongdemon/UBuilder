@@ -94,8 +94,15 @@ class FillTaskViewController: BaseViewController, QRCodeReaderViewControllerDele
         let task : Task = Task()
         task.name = txtTaskName.text!
         task.price = txtPrice.text!
-        task.owner = self.employee!
-        WebApi.addTask(projectId: self.item.id, task: task)
+        task.owner = self.employee!        
+        WebApi.addTask(projectId: self.item.id, task: task) { (done) in
+            if done {
+                
+            }
+            else {
+                
+            }
+        }
     }
     /*
     // MARK: - Navigation

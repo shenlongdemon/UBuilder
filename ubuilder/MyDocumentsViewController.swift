@@ -63,7 +63,7 @@ class MyDocumentsViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "itemdetail" {
             let vc = segue.destination as! ProductViewController
-            vc.prepareModel(item: sender as! Project)
+            vc.prepareModel(project: sender as! Project, task: nil)
         }
     }
    

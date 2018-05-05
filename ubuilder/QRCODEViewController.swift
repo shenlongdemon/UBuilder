@@ -25,6 +25,9 @@ class QRCODEViewController: BaseViewController {
     }
     
 
+    @IBAction func omidCode(_ sender: Any) {
+        self.performSegue(withIdentifier: "omidcode", sender: self.item)
+    }
     
     // MARK: - Navigation
 
@@ -39,4 +42,5 @@ class QRCODEViewController: BaseViewController {
     func prepareModel(item: String){
         self.item = item
     }
+    
 }

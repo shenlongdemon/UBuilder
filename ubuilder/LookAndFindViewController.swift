@@ -96,24 +96,33 @@ class LookAndFindViewController: BaseViewController , QRCodeReaderViewController
     }
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
         
-        
-        
-        
         reader.stopScanning()
         self.isScanning = false
         self.processQRCode(qrCode: result.value)
-        
         dismiss(animated: true) { [weak self] in
             
         }
     }
     func processQRCode(qrCode: String) {
         if (self.isScanning == false){
-            WebApi.getItemByQRCode(code: qrCode) { (i) in
-                guard let item = i else { /* Handle nil case */ return }
-                self.performSegue(withIdentifier: "productdetailhome", sender: item)
-
-            }
+            
+            WebApi.getProjectOrTaskByQRCode(code: qrCode, completion: { (p, t, isProjectNotTask) in
+                
+                if isProjectNotTask{
+                    if let project = p as? Project{
+                        self.performSegue(withIdentifier: "productdetailhome", sender: project)
+                    }
+                }
+                else {
+                    if let task = t as? Task, let project = p as? Project{
+                        var dic : NSMutableDictionary = NSMutableDictionary()
+                        
+                        dic.setValue(task, forKey: "task")
+                        dic.setValue(project, forKey: "project")
+                        self.performSegue(withIdentifier: "productdetailhome", sender: dic)
+                    }
+                }
+            })
         }
         
         
@@ -131,9 +140,19 @@ class LookAndFindViewController: BaseViewController , QRCodeReaderViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "productdetailhome" {
-            ///let vc = segue.destination as! ProductViewController
-            //vc.prepareModel(item: sender as! Item)
+            let vc = segue.destination as! ProductViewController
+            if let project : Project = sender as? Project {
+                
+                vc.prepareModel(project: sender as! Project, task: nil)
+            }
+            else {
+                let dic = sender as! NSDictionary
+                let project = dic.value(forKey: "project") as! Project
+                let task = dic.value(forKey: "task") as! Task
+                vc.prepareModel(project: project, task: task)
+            }
         }
+        
         
         
     }

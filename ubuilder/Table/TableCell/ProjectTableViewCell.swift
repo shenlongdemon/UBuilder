@@ -25,12 +25,14 @@ class ProjectTableViewCell: TableCell {
         
         self.lbName.text = item.name
         self.imgImage.image = Util.getImage(data64: self.item.image)
-        if self.item.modules.tasks.count > 0 {
-            
+        if self.item.module.tasks.count > 0 {
+            self.lbModuleCount.textColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
             self.lbModuleCount.text = self.item.getModuleCountStr()
             self.lbTotalCost.text =  "\(self.item.getTotalCost())"
+            
         }
         else {
+            self.lbModuleCount.textColor = #colorLiteral(red: 0.9332866073, green: 0.6511869431, blue: 0.2768015563, alpha: 1)
             self.lbModuleCount.text = "No mudoles"
             self.lbTotalCost.text = ""
         }

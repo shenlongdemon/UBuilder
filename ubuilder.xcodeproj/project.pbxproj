@@ -42,6 +42,9 @@
 		3B2348E2209D5E290041A770 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348E0209D5E290041A770 /* ProjectTableViewCell.swift */; };
 		3B2348E3209D5E290041A770 /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B2348E1209D5E290041A770 /* ProjectTableViewCell.xib */; };
 		3B2348E5209D87FA0041A770 /* FillTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348E4209D87FA0041A770 /* FillTaskViewController.swift */; };
+		3B2348E8209E0A0A0041A770 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348E6209E0A0A0041A770 /* TaskTableViewCell.swift */; };
+		3B2348E9209E0A0A0041A770 /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B2348E7209E0A0A0041A770 /* TaskTableViewCell.xib */; };
+		3B2348EB209E23270041A770 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348EA209E23270041A770 /* TaskDetailViewController.swift */; };
 		3B76B85C2096A8CA000438C9 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85B2096A8CA000438C9 /* Store.swift */; };
 		3B76B85E2096B1EB000438C9 /* MyDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85D2096B1EB000438C9 /* MyDocumentsViewController.swift */; };
 		3B76B8602096B54A000438C9 /* FillItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85F2096B54A000438C9 /* FillItemViewController.swift */; };
@@ -97,6 +100,9 @@
 		3B2348E0209D5E290041A770 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		3B2348E1209D5E290041A770 /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
 		3B2348E4209D87FA0041A770 /* FillTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillTaskViewController.swift; sourceTree = "<group>"; };
+		3B2348E6209E0A0A0041A770 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		3B2348E7209E0A0A0041A770 /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
+		3B2348EA209E23270041A770 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		3B76B85B2096A8CA000438C9 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3B76B85D2096B1EB000438C9 /* MyDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDocumentsViewController.swift; sourceTree = "<group>"; };
 		3B76B85F2096B54A000438C9 /* FillItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillItemViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +180,7 @@
 				3B76B86D20979F0E000438C9 /* OMIDCODEViewController.swift */,
 				41E2FF4C209C43AA00CB8111 /* QRCODEViewController.swift */,
 				3B2348E4209D87FA0041A770 /* FillTaskViewController.swift */,
+				3B2348EA209E23270041A770 /* TaskDetailViewController.swift */,
 			);
 			path = ubuilder;
 			sourceTree = "<group>";
@@ -239,6 +246,8 @@
 				3B210DAF20962B4900A5CF84 /* HistoryTableViewCell.xib */,
 				3B2348E0209D5E290041A770 /* ProjectTableViewCell.swift */,
 				3B2348E1209D5E290041A770 /* ProjectTableViewCell.xib */,
+				3B2348E6209E0A0A0041A770 /* TaskTableViewCell.swift */,
+				3B2348E7209E0A0A0041A770 /* TaskTableViewCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -333,6 +342,7 @@
 				3B210D6E2095826300A5CF84 /* Assets.xcassets in Resources */,
 				3B210DA32095D59400A5CF84 /* ProductTableViewCell.xib in Resources */,
 				3B210D692095826200A5CF84 /* Main.storyboard in Resources */,
+				3B2348E9209E0A0A0041A770 /* TaskTableViewCell.xib in Resources */,
 				3B210DB120962B4900A5CF84 /* HistoryTableViewCell.xib in Resources */,
 				3B2348E3209D5E290041A770 /* ProjectTableViewCell.xib in Resources */,
 				3B210D9D2095CD5800A5CF84 /* CategoryTableViewCell.xib in Resources */,
@@ -428,6 +438,8 @@
 				3B76B85C2096A8CA000438C9 /* Store.swift in Sources */,
 				3B76B8622096D245000438C9 /* ItemDetailViewController.swift in Sources */,
 				3B2348E2209D5E290041A770 /* ProjectTableViewCell.swift in Sources */,
+				3B2348EB209E23270041A770 /* TaskDetailViewController.swift in Sources */,
+				3B2348E8209E0A0A0041A770 /* TaskTableViewCell.swift in Sources */,
 				3B210D842095B6DD00A5CF84 /* FindProductViewController.swift in Sources */,
 				3B210D8B2095BB6C00A5CF84 /* ApiModel.swift in Sources */,
 				3B76B8682096D65F000438C9 /* BluetoothViewController.swift in Sources */,

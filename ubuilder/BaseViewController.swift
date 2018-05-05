@@ -11,7 +11,7 @@ import UIKit
 class BaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.backgroundColor = #colorLiteral(red: 0.8979413509, green: 0.8980956078, blue: 0.8979316354, alpha: 1)
+        self.view.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
