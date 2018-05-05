@@ -11,6 +11,6 @@ target 'ubuilder' do
   pod 'QRCodeReader.swift', '~> 8.1.1'
   pod 'DropDown'
   pod 'IQKeyboardManagerSwift'
-  # Pods for uguta
+  # Pods for ubuilder
 
 end

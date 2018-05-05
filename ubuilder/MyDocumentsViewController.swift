@@ -36,13 +36,13 @@ class MyDocumentsViewController: BaseViewController {
         loadData()
     }
     func initTable() {
-        let cellIdentifier = ProductTableViewCell.reuseIdentifier
+        let cellIdentifier = ProjectTableViewCell.reuseIdentifier
         let cellNib = UINib(nibName: cellIdentifier, bundle: nil)
         self.tableView.register(cellNib, forCellReuseIdentifier: cellIdentifier)
         
-        self.tableAdapter = TableAdapter(items:self.items, cellIdentifier: cellIdentifier, cellHeight : ProductTableViewCell.height)
+        self.tableAdapter = TableAdapter(items:self.items, cellIdentifier: cellIdentifier, cellHeight : ProjectTableViewCell.height)
         self.tableAdapter.onDidSelectRowAt { (item) in
-            self.performSegue(withIdentifier: "itemdetail", sender: item)
+            //self.performSegue(withIdentifier: "itemdetail", sender: item)
         }
         self.tableView.delegate = self.tableAdapter
         self.tableView.dataSource = self.tableAdapter
@@ -51,8 +51,9 @@ class MyDocumentsViewController: BaseViewController {
     func loadData() {
         progress.startAnimating()
         items.removeAllObjects()
+        self.tableView.reloadData()
         let user = Store.getUser()!
-        WebApi.getItemsByOwnerId(userId: user.id) { (list) in
+        WebApi.getProjectsByOwnerId(userId: user.id) { (list) in
             self.items.addObjects(from: list)
             self.tableView.reloadData()
             self.progress.stopAnimating()

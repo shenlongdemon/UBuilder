@@ -103,6 +103,9 @@ extension String {
         }
         return t
     }
+    func toInt() -> Int{
+        return Int(self) ?? 0
+    }
 }
 extension NSDictionary {
     func cast<T: BaseMappable>() -> T? {

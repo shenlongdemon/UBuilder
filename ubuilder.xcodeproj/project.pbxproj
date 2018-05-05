@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3463097C1A41B68D0F3E7612 /* Pods_uguta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AC1DB8676FFE9EF562554F /* Pods_uguta.framework */; };
 		3B210D642095826200A5CF84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B210D632095826200A5CF84 /* AppDelegate.swift */; };
 		3B210D662095826200A5CF84 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B210D652095826200A5CF84 /* ViewController.swift */; };
 		3B210D692095826200A5CF84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B210D672095826200A5CF84 /* Main.storyboard */; };
@@ -39,6 +38,9 @@
 		3B210DB020962B4900A5CF84 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B210DAE20962B4900A5CF84 /* HistoryTableViewCell.swift */; };
 		3B210DB120962B4900A5CF84 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B210DAF20962B4900A5CF84 /* HistoryTableViewCell.xib */; };
 		3B210DB320962B7400A5CF84 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B210DB220962B7400A5CF84 /* History.swift */; };
+		3B2348DF209D533A0041A770 /* ProjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348DE209D533A0041A770 /* ProjectType.swift */; };
+		3B2348E2209D5E290041A770 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348E0209D5E290041A770 /* ProjectTableViewCell.swift */; };
+		3B2348E3209D5E290041A770 /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B2348E1209D5E290041A770 /* ProjectTableViewCell.xib */; };
 		3B76B85C2096A8CA000438C9 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85B2096A8CA000438C9 /* Store.swift */; };
 		3B76B85E2096B1EB000438C9 /* MyDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85D2096B1EB000438C9 /* MyDocumentsViewController.swift */; };
 		3B76B8602096B54A000438C9 /* FillItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85F2096B54A000438C9 /* FillItemViewController.swift */; };
@@ -90,6 +92,9 @@
 		3B210DAE20962B4900A5CF84 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		3B210DAF20962B4900A5CF84 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		3B210DB220962B7400A5CF84 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		3B2348DE209D533A0041A770 /* ProjectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectType.swift; sourceTree = "<group>"; };
+		3B2348E0209D5E290041A770 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		3B2348E1209D5E290041A770 /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
 		3B76B85B2096A8CA000438C9 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3B76B85D2096B1EB000438C9 /* MyDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDocumentsViewController.swift; sourceTree = "<group>"; };
 		3B76B85F2096B54A000438C9 /* FillItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillItemViewController.swift; sourceTree = "<group>"; };
@@ -101,8 +106,6 @@
 		3B76B86B20970461000438C9 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		3B76B86D20979F0E000438C9 /* OMIDCODEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMIDCODEViewController.swift; sourceTree = "<group>"; };
 		41E2FF4C209C43AA00CB8111 /* QRCODEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCODEViewController.swift; sourceTree = "<group>"; };
-		774118D0D85DBFDD0FBCE2E6 /* Pods-uguta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uguta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uguta/Pods-uguta.debug.xcconfig"; sourceTree = "<group>"; };
-		B28DBF4389D9FFA96CDF2965 /* Pods-uguta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uguta.release.xcconfig"; path = "Pods/Target Support Files/Pods-uguta/Pods-uguta.release.xcconfig"; sourceTree = "<group>"; };
 		F7F79E34582E2EF6ACF3C631 /* Pods-ubuilder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ubuilder.release.xcconfig"; path = "Pods/Target Support Files/Pods-ubuilder/Pods-ubuilder.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,7 +115,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B76B86A2096EEE9000438C9 /* CoreBluetooth.framework in Frameworks */,
-				3463097C1A41B68D0F3E7612 /* Pods_uguta.framework in Frameworks */,
 				7CAA03A7C206FB07DFDA60AA /* Pods_ubuilder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +202,7 @@
 				3B210DA42095D5C200A5CF84 /* Item.swift */,
 				3B210DA62096051D00A5CF84 /* User.swift */,
 				3B210DB220962B7400A5CF84 /* History.swift */,
+				3B2348DE209D533A0041A770 /* ProjectType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +234,8 @@
 				3B210DA12095D59400A5CF84 /* ProductTableViewCell.xib */,
 				3B210DAE20962B4900A5CF84 /* HistoryTableViewCell.swift */,
 				3B210DAF20962B4900A5CF84 /* HistoryTableViewCell.xib */,
+				3B2348E0209D5E290041A770 /* ProjectTableViewCell.swift */,
+				3B2348E1209D5E290041A770 /* ProjectTableViewCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -248,8 +253,6 @@
 		D1E5014B7B7C9A0F910AFCA3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				774118D0D85DBFDD0FBCE2E6 /* Pods-uguta.debug.xcconfig */,
-				B28DBF4389D9FFA96CDF2965 /* Pods-uguta.release.xcconfig */,
 				0C67F61AE279F75131051C19 /* Pods-ubuilder.debug.xcconfig */,
 				F7F79E34582E2EF6ACF3C631 /* Pods-ubuilder.release.xcconfig */,
 			);
@@ -268,6 +271,7 @@
 				3B210D5D2095826200A5CF84 /* Frameworks */,
 				3B210D5E2095826200A5CF84 /* Resources */,
 				55698C1F25567D214840BA3E /* [CP] Embed Pods Frameworks */,
+				A87D3E5CE3A0FF3743091F25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -327,6 +331,7 @@
 				3B210DA32095D59400A5CF84 /* ProductTableViewCell.xib in Resources */,
 				3B210D692095826200A5CF84 /* Main.storyboard in Resources */,
 				3B210DB120962B4900A5CF84 /* HistoryTableViewCell.xib in Resources */,
+				3B2348E3209D5E290041A770 /* ProjectTableViewCell.xib in Resources */,
 				3B210D9D2095CD5800A5CF84 /* CategoryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +389,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ubuilder/Pods-ubuilder-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A87D3E5CE3A0FF3743091F25 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ubuilder/Pods-ubuilder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -400,8 +420,10 @@
 				3B210DA92096059E00A5CF84 /* Util.swift in Sources */,
 				3B210D7F20958A5C00A5CF84 /* LookAndFindViewController.swift in Sources */,
 				3B76B85E2096B1EB000438C9 /* MyDocumentsViewController.swift in Sources */,
+				3B2348DF209D533A0041A770 /* ProjectType.swift in Sources */,
 				3B76B85C2096A8CA000438C9 /* Store.swift in Sources */,
 				3B76B8622096D245000438C9 /* ItemDetailViewController.swift in Sources */,
+				3B2348E2209D5E290041A770 /* ProjectTableViewCell.swift in Sources */,
 				3B210D842095B6DD00A5CF84 /* FindProductViewController.swift in Sources */,
 				3B210D8B2095BB6C00A5CF84 /* ApiModel.swift in Sources */,
 				3B76B8682096D65F000438C9 /* BluetoothViewController.swift in Sources */,

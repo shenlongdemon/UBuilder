@@ -13,11 +13,11 @@ import ObjectMapper
 class Project: IObject, Mappable {
     var name: String = ""
     var description: String = ""
-    var category: Category!
+    var type: ProjectType!
     var image: String = ""
     var code: String = ""
     var owner: History!
-    var modules: Module!
+    var modules: Module = Module()
     override init() {
         
     }
@@ -28,7 +28,7 @@ class Project: IObject, Mappable {
     func mapping(map: Map) {
         self.id <- map["id"]
         self.name     <- map["name"]
-        self.category     <- map["category"]
+        self.type     <- map["type"]
         self.image   <- map["image"]
         self.description     <- map["description"]
         self.code     <- map["code"]
@@ -109,6 +109,9 @@ class Section: Mappable {
 class Module: Mappable {
     
     var tasks: [Task] = []
+    init() {
+        
+    }
     required init?(map: Map) {
         
     }

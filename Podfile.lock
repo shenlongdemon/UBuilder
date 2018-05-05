@@ -4,8 +4,8 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
   - DataCompression (2.0.1)
-  - DropDown (2.3.1)
-  - IQKeyboardManagerSwift (6.0.1)
+  - DropDown (2.3.2)
+  - IQKeyboardManagerSwift (6.0.2)
   - ObjectMapper (3.1.0)
   - QRCode (2.0)
   - QRCodeReader.swift (8.1.1)
@@ -19,27 +19,16 @@ DEPENDENCIES:
   - QRCode
   - QRCodeReader.swift (~> 8.1.1)
 
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - Alamofire
-    - AlamofireObjectMapper
-    - DataCompression
-    - DropDown
-    - IQKeyboardManagerSwift
-    - ObjectMapper
-    - QRCode
-    - QRCodeReader.swift
-
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   DataCompression: 2ee34bbd53d55c37c529785643b6c208f7c87919
-  DropDown: 20499c7b2731b0d21609af924e47c7677a2be50d
-  IQKeyboardManagerSwift: 748d06e0f8134fc28934031e6377da3cf3d4f38c
+  DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
+  IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   QRCodeReader.swift: b164a681887de276d405ff02bce854d82cd6360b
 
-PODFILE CHECKSUM: 4320da9123458e8b9343f87d070493fddf7ba7eb
+PODFILE CHECKSUM: 6ba4c7fd966db29212c342e3ff9224f839bf1c4b
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.4.0

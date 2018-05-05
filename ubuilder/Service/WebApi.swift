@@ -19,10 +19,11 @@ import Alamofire
 import ObjectMapper
 class WebApi{
     //static let HOST = "http://96.93.123.234:5000"
-    //static let HOST = "http://192.168.1.3:5000"
-    static let HOST = "http://192.168.79.84:5000"
+    static let HOST = "http://192.168.1.5:5000"
+    //static let HOST = "http://192.168.79.84:5000"
 
     static let GET_CATEGORIES = "\(WebApi.HOST)/api/sellrecognizer/getCategories"
+
     static let GET_PRODUCT_BY_CATEGORY = "\(WebApi.HOST)/api/sellrecognizer/getProductsByCategory"
     static let GET_DESCRIPTION_BY_QRCODE = "\(WebApi.HOST)/api/sellrecognizer/getDescriptionQRCode"
     static let GET_ITEM_BY_QRCODE = "\(WebApi.HOST)/api/sellrecognizer/getItemByQRCode"
@@ -38,30 +39,24 @@ class WebApi{
     
     static let GET_PROJECTS_BY_USERID = "\(WebApi.HOST)/api/ubuilder/getProjectsByOwnerId"
     static let ADD_PROJECT = "\(WebApi.HOST)/api/ubuilder/insertProject"
+    static let GET_PROJECT_TYPES = "\(WebApi.HOST)/api/ubuilder/getProjectTypes"
 
     static func manager()-> SessionManager{
         let manager = Alamofire.SessionManager.default
-        manager.session.configuration.timeoutIntervalForRequest = 120
+        manager.session.configuration.timeoutIntervalForRequest = 180
         return manager
     }
-    static func getProjectsByOwnerId(userId: String, completion: @escaping (_ list:[Item])->Void){
+    static func getProjectsByOwnerId(userId: String, completion: @escaping (_ list:[Project])->Void){
         let url = URL(string: "\(WebApi.GET_PROJECTS_BY_USERID)?ownerId=\(userId)&pageNum=1&pageSize=10000")
         WebApi.manager().request(url!)
             .responseJSON { (data) in
                 
-                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) as? ApiModel else {
+                guard let apiModel : ApiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) else {
                     completion([])
                     return
-                }
-                
+                }                
                 if(apiModel.Status == 1){
-                    let arr = apiModel.Data as! [Any]
-                    var items : [Item] = []
-                    for jsonItem in arr{
-                        let strJSON = jsonItem as! NSDictionary
-                        let item : Item = strJSON.cast()!
-                        items.append(item)
-                    }
+                    let items : [Project] = Mapper<Project>().mapArray(JSONObject: apiModel.Data) ?? []
                     completion(items)
                 }
                 else {
@@ -110,17 +105,17 @@ class WebApi{
     }
     static func addProject(item: Project, completion: @escaping (_ project: Project? )->Void){
         let json = item.toJSON()
-        let url = URL(string: WebApi.ADD_ITEM)
+        let url = URL(string: WebApi.ADD_PROJECT)
         
         WebApi.manager().request(url!, method: .post, parameters: json, encoding: URLEncoding.default)
             .responseJSON { (data) in
-                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) as? ApiModel else {
+                guard let apiModel : ApiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) else {
                     completion(nil)
                     return
                 }
                 
                 if(apiModel.Status == 1){
-                    let proj : Project? = Mapper<Project>().map(JSONObject: apiModel.Data) as? Project
+                    let proj : Project? = Mapper<Project>().map(JSONObject: apiModel.Data)
                     completion(proj)
                 }
                 else {
@@ -351,7 +346,30 @@ class WebApi{
                 
         }
     }
-    
+    static func getProjectTypes(completion: @escaping (_ list:[ProjectType])->Void){
+        
+        let url = URL(string: WebApi.GET_PROJECT_TYPES)
+        
+        WebApi.manager().request(url!)
+            .responseJSON { (data) in
+                
+                
+                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) as? ApiModel else {
+                    completion([])
+                    return
+                }
+                
+                if(apiModel.Status == 1){
+                    
+                    var projectTypes : [ProjectType] = Mapper<ProjectType>().mapArray(JSONObject: apiModel.Data) ?? []
+                    completion(projectTypes)
+                }
+                else {
+                    completion([])
+                }
+                
+        }
+    }
     static func getProductsByBluetoothCodes(codes: [String], completion: @escaping (_ list:[Item])->Void){
         
         let url = URL(string: WebApi.GET_PRODUCTS_BY_BLUETOOTH_CODES)

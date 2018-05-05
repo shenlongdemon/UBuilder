@@ -16,9 +16,9 @@ class FillItemViewController: BaseViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var txtDescription: UITextView!
     @IBOutlet weak var txtCategory: UITextField!
     @IBOutlet weak var txtName: UITextField!
-    var categories: [Category] = []
+    var projectTypes: [ProjectType] = []
     let dropDown = DropDown()
-    var selectCategpry : Category?
+    var selectProjectType: ProjectType?
     override func viewDidLoad() {
         super.viewDidLoad()
         progress.stopAnimating()
@@ -30,15 +30,15 @@ class FillItemViewController: BaseViewController, UIImagePickerControllerDelegat
         
         dropDown.anchorView = self.txtCategory
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            self.selectCategpry = self.categories[index]
+            self.selectProjectType = self.projectTypes[index]
             self.txtCategory.text = item
         }
         // Do any additional setup after loading the view.
     }
     func loadCategories(){
-        WebApi.getCategories { (list) in
-            self.categories.removeAll()
-            self.categories.append(contentsOf: list)
+        WebApi.getProjectTypes { (list) in
+            self.projectTypes.removeAll()
+            self.projectTypes.append(contentsOf: list)
             let names = list.map({ (cate) -> String in
                 return cate.value
             })
@@ -77,14 +77,14 @@ class FillItemViewController: BaseViewController, UIImagePickerControllerDelegat
             Util.showOKAlert(VC: self, message: "Please wait")
             return
         }
-        guard  let cat = self.selectCategpry else {
-            Util.showOKAlert(VC: self, message: "Please select category")
+        guard  let cat = self.selectProjectType else {
+            Util.showOKAlert(VC: self, message: "Please select type")
             return
         }
         var item : Project = Project()
         item.name = txtName.text!
         item.description = txtDescription.text
-        item.category = self.selectCategpry!
+        item.type = self.selectProjectType!
         item.image = Util.getData64(image: imgImage.image)
         
         progress.startAnimating()
@@ -97,7 +97,8 @@ class FillItemViewController: BaseViewController, UIImagePickerControllerDelegat
 //                else{
 //                    Util.showOKAlert(VC: self, message: "Cannot add item")
 //                }
-                self.progress.startAnimating()
+                self.progress.stopAnimating()
+                
             })
         }
         
