@@ -41,6 +41,7 @@
 		3B2348DF209D533A0041A770 /* ProjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348DE209D533A0041A770 /* ProjectType.swift */; };
 		3B2348E2209D5E290041A770 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348E0209D5E290041A770 /* ProjectTableViewCell.swift */; };
 		3B2348E3209D5E290041A770 /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B2348E1209D5E290041A770 /* ProjectTableViewCell.xib */; };
+		3B2348E5209D87FA0041A770 /* FillTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348E4209D87FA0041A770 /* FillTaskViewController.swift */; };
 		3B76B85C2096A8CA000438C9 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85B2096A8CA000438C9 /* Store.swift */; };
 		3B76B85E2096B1EB000438C9 /* MyDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85D2096B1EB000438C9 /* MyDocumentsViewController.swift */; };
 		3B76B8602096B54A000438C9 /* FillItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85F2096B54A000438C9 /* FillItemViewController.swift */; };
@@ -95,6 +96,7 @@
 		3B2348DE209D533A0041A770 /* ProjectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectType.swift; sourceTree = "<group>"; };
 		3B2348E0209D5E290041A770 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		3B2348E1209D5E290041A770 /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
+		3B2348E4209D87FA0041A770 /* FillTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillTaskViewController.swift; sourceTree = "<group>"; };
 		3B76B85B2096A8CA000438C9 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3B76B85D2096B1EB000438C9 /* MyDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDocumentsViewController.swift; sourceTree = "<group>"; };
 		3B76B85F2096B54A000438C9 /* FillItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillItemViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				3B210D652095826200A5CF84 /* ViewController.swift */,
 				3B76B86D20979F0E000438C9 /* OMIDCODEViewController.swift */,
 				41E2FF4C209C43AA00CB8111 /* QRCODEViewController.swift */,
+				3B2348E4209D87FA0041A770 /* FillTaskViewController.swift */,
 			);
 			path = ubuilder;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B2348E5209D87FA0041A770 /* FillTaskViewController.swift in Sources */,
 				3B210D7D20958A4300A5CF84 /* BaseViewController.swift in Sources */,
 				3B210DAD2096297400A5CF84 /* HistoryViewController.swift in Sources */,
 				3B76B8642096D37F000438C9 /* GenCodeViewController.swift in Sources */,

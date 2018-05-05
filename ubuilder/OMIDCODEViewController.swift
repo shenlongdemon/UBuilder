@@ -9,11 +9,11 @@
 import UIKit
 
 class OMIDCODEViewController: BaseViewController {
-    var item: Item!
+    var item: String!
     @IBOutlet weak var imgImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imgImage.image = Util.drawOMIDCode(str: self.item.bluetoothCode)
+        self.imgImage.image = Util.drawOMIDCode(str: item)
         // Do any additional setup after loading the view.
     }
 
@@ -21,7 +21,7 @@ class OMIDCODEViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func prepareModel(item: Item){
+    func prepareModel(item: String){
         self.item = item
     }
 

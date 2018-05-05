@@ -1,15 +1,16 @@
 //
-//  LookAndFindViewController.swift
-//  uguta
+//  FillTaskViewController.swift
+//  ubuilder
 //
-//  Created by CO7VF2D1G1HW on 4/29/18.
+//  Created by CO7VF2D1G1HW on 5/5/18.
 //  Copyright © 2018 CO7VF2D1G1HW. All rights reserved.
 //
 
 import AVFoundation
 import UIKit
 import QRCodeReader
-class LookAndFindViewController: BaseViewController , QRCodeReaderViewControllerDelegate{
+
+class FillTaskViewController: BaseViewController, QRCodeReaderViewControllerDelegate {
     var isScanning: Bool = false
     lazy var reader: QRCodeReader = QRCodeReader()
     lazy var readerVC: QRCodeReaderViewController = {
@@ -22,23 +23,40 @@ class LookAndFindViewController: BaseViewController , QRCodeReaderViewController
         
         return QRCodeReaderViewController(builder: builder)
     }()
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
-    }
+    @IBOutlet weak var lbEmployeeName: UILabel!
+    
+    @IBOutlet weak var txtType: UITextField!
+    @IBOutlet weak var progress: UIActivityIndicatorView!
+    @IBOutlet weak var txtPrice: UITextField!
+    @IBOutlet weak var txtTaskName: UITextField!
+    @IBOutlet weak var txtProjectName: UITextField!
+    @IBOutlet weak var imgImage: UIImageView!
+    var item: Project!
+    var employee: User? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.txtType.text = self.item.type.value
+        self.txtProjectName.text = self.item.name
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(startQRCode(tapGestureRecognizer:)))
+        self.imgImage.isUserInteractionEnabled = true
+        self.imgImage.addGestureRecognizer(tapGestureRecognizer)
         // Do any additional setup after loading the view.
     }
-    @IBAction func bluetooth(_ sender: Any) {
-        self.performSegue(withIdentifier: "bluetooth", sender: nil)
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @objc func startQRCode(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        
+    }
+    func prepareModel(item: Project)  {
+        self.item = item
+    }
+    
     private func checkScanPermissions() -> Bool {
         do {
             return try QRCodeReader.supportsMetadataObjectTypes()
@@ -68,7 +86,17 @@ class LookAndFindViewController: BaseViewController , QRCodeReaderViewController
             return false
         }
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.getEmployee(qrCode: "11351cdb-b791-43a0-a829-880ca3a279ad");
+    }
+    @IBAction func save(_ sender: Any) {
+        let task : Task = Task()
+        task.name = txtTaskName.text!
+        task.price = txtPrice.text!
+        task.owner = self.employee!
+        WebApi.addTask(projectId: self.item.id, task: task)
+    }
     /*
     // MARK: - Navigation
 
@@ -78,22 +106,6 @@ class LookAndFindViewController: BaseViewController , QRCodeReaderViewController
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func allProducts(_ sender: Any) {
-        self.performSegue(withIdentifier: "allproducts", sender: nil)
-    }
-    @IBAction func startScan(_ sender: Any) {
-        guard checkScanPermissions() else { return }
-        self.isScanning = true
-        readerVC.modalPresentationStyle = .formSheet
-        readerVC.delegate               = self
-        
-        readerVC.completionBlock = { (result: QRCodeReaderResult?) in
-            if let result = result {
-                print("Completion with result: \(result.value) of type \(result.metadataType)")
-            }
-        }
-        present(readerVC, animated: true, completion: nil)
-    }
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
         
         
@@ -107,17 +119,24 @@ class LookAndFindViewController: BaseViewController , QRCodeReaderViewController
             
         }
     }
+    func loadEmployeeInfo(){
+        guard let user = employee else {
+            return
+        }
+        self.imgImage.image = Util.getImage(data64: user.image ?? "")
+        self.lbEmployeeName.text = "\(user.firstName) \(user.lastName)"
+    }
     func processQRCode(qrCode: String) {
         if (self.isScanning == false){
-            WebApi.getItemByQRCode(code: qrCode) { (i) in
-                guard let item = i else { /* Handle nil case */ return }
-                self.performSegue(withIdentifier: "productdetailhome", sender: item)
-
-            }
+            self.getEmployee(qrCode: qrCode)
         }
-        
-        
-        
+    }
+    func getEmployee(qrCode: String){
+        WebApi.getUserById(userId: qrCode) { (u) in
+            guard let usr = u else { /* Handle nil case */ return }
+            self.employee = usr
+            self.loadEmployeeInfo()
+        }
     }
     func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {
         print("Switching capturing to: \(newCaptureDevice.device.localizedName)")
@@ -128,14 +147,5 @@ class LookAndFindViewController: BaseViewController , QRCodeReaderViewController
         
         dismiss(animated: true, completion: nil)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "productdetailhome" {
-            ///let vc = segue.destination as! ProductViewController
-            //vc.prepareModel(item: sender as! Item)
-        }
-        
-        
-    }
-    
+
 }

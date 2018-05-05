@@ -42,7 +42,7 @@ class MyDocumentsViewController: BaseViewController {
         
         self.tableAdapter = TableAdapter(items:self.items, cellIdentifier: cellIdentifier, cellHeight : ProjectTableViewCell.height)
         self.tableAdapter.onDidSelectRowAt { (item) in
-            //self.performSegue(withIdentifier: "itemdetail", sender: item)
+            self.performSegue(withIdentifier: "itemdetail", sender: item)
         }
         self.tableView.delegate = self.tableAdapter
         self.tableView.dataSource = self.tableAdapter
@@ -63,7 +63,7 @@ class MyDocumentsViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "itemdetail" {
             let vc = segue.destination as! ProductViewController
-            vc.prepareModel(item: sender as! Item)
+            vc.prepareModel(item: sender as! Project)
         }
     }
    

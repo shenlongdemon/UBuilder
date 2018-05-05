@@ -26,9 +26,9 @@ class ProjectTableViewCell: TableCell {
         self.lbName.text = item.name
         self.imgImage.image = Util.getImage(data64: self.item.image)
         if self.item.modules.tasks.count > 0 {
-            let hasS = self.item.modules.tasks.count == 1 ? "" : "s"
-            self.lbModuleCount.text = "\(self.item.modules.tasks.count) module\(hasS)"
-            self.lbTotalCost.text =  "\(self.item.modules.tasks.reduce(0) { $0 + $1.price.toInt() })"
+            
+            self.lbModuleCount.text = self.item.getModuleCountStr()
+            self.lbTotalCost.text =  "\(self.item.getTotalCost())"
         }
         else {
             self.lbModuleCount.text = "No mudoles"

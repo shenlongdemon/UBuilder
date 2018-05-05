@@ -46,7 +46,7 @@ class GenCodeViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "omidcode"){
             let vc = segue.destination as! OMIDCODEViewController
-            vc.prepareModel(item: self.item)
+            vc.prepareModel(item: "self.item")
         }
     }
     

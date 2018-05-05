@@ -38,6 +38,15 @@ class Project: IObject, Mappable {
     func getImage() -> UIImage? {
         return Util.getImage(data64: self.image)
     }
+    func getModuleCountStr() -> String {
+        let hasS = self.modules.tasks.count == 1 ? "" : "s"
+        let str = "\(self.modules.tasks.count) module\(hasS)"
+        return str
+    }
+    func getTotalCost() -> Int {
+        let total = self.modules.tasks.reduce(0) { $0 + $1.price.toInt() }
+        return total
+    }
 }
 class Item: IObject, Mappable {
     var name: String = ""
@@ -123,9 +132,12 @@ class Module: Mappable {
 
 class Task: IObject, Mappable {
     var code : String = ""
-    var history: [History] = []
+    var owner: User!
     var name: String = ""
     var price: String = ""
+    override init() {
+        
+    }
     required init?(map: Map) {
         
     }
@@ -135,7 +147,7 @@ class Task: IObject, Mappable {
         self.name <- map["name"]
         self.code <- map["code"]
         self.price <- map["price"]
-        self.history <- map["history"]
+        self.owner <- map["owner"]
     }
 }
 

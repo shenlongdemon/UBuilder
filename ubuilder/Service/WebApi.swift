@@ -40,7 +40,10 @@ class WebApi{
     static let GET_PROJECTS_BY_USERID = "\(WebApi.HOST)/api/ubuilder/getProjectsByOwnerId"
     static let ADD_PROJECT = "\(WebApi.HOST)/api/ubuilder/insertProject"
     static let GET_PROJECT_TYPES = "\(WebApi.HOST)/api/ubuilder/getProjectTypes"
+    static let GET_USER_BY_ID = "\(WebApi.HOST)/api/ubuilder/getUserById"
+    static let ADD_TASK = "\(WebApi.HOST)/api/ubuilder/addTask"
 
+    
     static func manager()-> SessionManager{
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 180
@@ -178,6 +181,29 @@ class WebApi{
                 
         }
     }
+    static func addTask(projectId : String, task: Task, completion: @escaping (_ done: Bool )->Void){
+        let parameters: Parameters = [
+            "projectId": projectId,
+            "task": task.toJSON()
+        ]
+        let url = URL(string: WebApi.ADD_TASK)
+        
+        WebApi.manager().request(url!, method: .post, parameters: parameters, encoding: URLEncoding.default)
+            .responseJSON { (data) in
+                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) as? ApiModel else {
+                    completion(false)
+                    return
+                }                
+                if(apiModel.Status == 1){
+                    
+                    completion(true)
+                }
+                else {
+                    completion(false)
+                }
+                
+        }
+    }
     
     static func payment(itemId: String, userInfo: History, completion: @escaping (_ item: Item? )->Void){
         let parameters: Parameters = [
@@ -266,6 +292,27 @@ class WebApi{
                 }
                 else {
                     completion(false)
+                }
+                
+        }
+    }
+    static func getUserById(userId: String,completion: @escaping (_ user: User? )->Void){
+        
+        let url = URL(string: "\(WebApi.GET_USER_BY_ID)?userid=\(userId)")
+        
+        WebApi.manager().request(url!)
+            .responseJSON { (data) in
+                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) as? ApiModel else {
+                    completion(nil)
+                    return
+                }
+                
+                if(apiModel.Status == 1){
+                    let user : User? = Mapper<User>().map(JSONObject: apiModel.Data)
+                    completion(user)
+                }
+                else {
+                    completion(nil)
                 }
                 
         }

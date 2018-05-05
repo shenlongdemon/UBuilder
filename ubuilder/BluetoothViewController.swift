@@ -114,8 +114,8 @@ class BluetoothViewController: BaseViewController,CBCentralManagerDelegate, CBPe
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "bluetoothdevice"){
-            let vc = segue.destination as! ProductViewController
-            vc.prepareModel(item: sender as! Item)
+            //let vc = segue.destination as! ProductViewController
+            //vc.prepareModel(item: sender as! Item)
         }
     }
     func centralManagerDidUpdateState(_ central: CBCentralManager) {

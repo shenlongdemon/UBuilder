@@ -60,8 +60,8 @@ class ProductListViewController: BaseViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! ProductViewController
-        vc.prepareModel(item: sender as! Item)        
+        //let vc = segue.destination as! ProductViewController
+        //vc.prepareModel(item: sender as! Item)        
     }
  
 
