@@ -35,15 +35,7 @@ class ProductTableViewCell: TableCell {
             
             self.lbPrice.text = self.item.price
             self.lbOwner.text = "\(self.item.owner.firstName ) \(self.item.owner.lastName )"
-            self.lbStatus.text = ""
-            if self.item.buyerCode.count > 0 {
-                self.lbStatus.text = "SOLD by \(self.item.buyer?.firstName ?? "" )"
-                self.lbStatus.textColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-            }
-            else if self.item.sellCode.count > 0 {
-                self.lbStatus.text = "PUBLISH"
-                self.lbStatus.textColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
-            }
+            
         }
         else{
             if let i = self.imgImage {
@@ -57,7 +49,7 @@ class ProductTableViewCell: TableCell {
             self.lbName.text = ""           
             self.lbPrice.text = ""
             self.lbOwner.text = ""
-            self.lbStatus.text = ""
+           
             
         }
     }

@@ -45,6 +45,10 @@
 		3B2348E8209E0A0A0041A770 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348E6209E0A0A0041A770 /* TaskTableViewCell.swift */; };
 		3B2348E9209E0A0A0041A770 /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B2348E7209E0A0A0041A770 /* TaskTableViewCell.xib */; };
 		3B2348EB209E23270041A770 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348EA209E23270041A770 /* TaskDetailViewController.swift */; };
+		3B2348ED209F50F80041A770 /* TableHAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348EC209F50F80041A770 /* TableHAdapter.swift */; };
+		3B2348EF209F51B70041A770 /* GroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348EE209F51B70041A770 /* GroupItem.swift */; };
+		3B2348F1209F53F30041A770 /* MyTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348F0209F53F30041A770 /* MyTasksViewController.swift */; };
+		3B2348F3209F60700041A770 /* MyItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2348F2209F60700041A770 /* MyItemsViewController.swift */; };
 		3B76B85C2096A8CA000438C9 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85B2096A8CA000438C9 /* Store.swift */; };
 		3B76B85E2096B1EB000438C9 /* MyDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85D2096B1EB000438C9 /* MyDocumentsViewController.swift */; };
 		3B76B8602096B54A000438C9 /* FillItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B85F2096B54A000438C9 /* FillItemViewController.swift */; };
@@ -103,6 +107,10 @@
 		3B2348E6209E0A0A0041A770 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		3B2348E7209E0A0A0041A770 /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		3B2348EA209E23270041A770 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		3B2348EC209F50F80041A770 /* TableHAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHAdapter.swift; sourceTree = "<group>"; };
+		3B2348EE209F51B70041A770 /* GroupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupItem.swift; sourceTree = "<group>"; };
+		3B2348F0209F53F30041A770 /* MyTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTasksViewController.swift; sourceTree = "<group>"; };
+		3B2348F2209F60700041A770 /* MyItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemsViewController.swift; sourceTree = "<group>"; };
 		3B76B85B2096A8CA000438C9 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3B76B85D2096B1EB000438C9 /* MyDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDocumentsViewController.swift; sourceTree = "<group>"; };
 		3B76B85F2096B54A000438C9 /* FillItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillItemViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +166,7 @@
 				3B210D8020958C8C00A5CF84 /* CusomUI */,
 				3B210D8F2095CA8100A5CF84 /* Extendtion */,
 				3B76B85F2096B54A000438C9 /* FillItemViewController.swift */,
+				3B2348E4209D87FA0041A770 /* FillTaskViewController.swift */,
 				3B210D832095B6DD00A5CF84 /* FindProductViewController.swift */,
 				3B76B8632096D37F000438C9 /* GenCodeViewController.swift */,
 				3B210DAC2096297400A5CF84 /* HistoryViewController.swift */,
@@ -169,18 +178,19 @@
 				3B210D672095826200A5CF84 /* Main.storyboard */,
 				3B210D8C2095BC1100A5CF84 /* Model */,
 				3B76B85D2096B1EB000438C9 /* MyDocumentsViewController.swift */,
+				3B2348F2209F60700041A770 /* MyItemsViewController.swift */,
 				3B76B86B20970461000438C9 /* MyProfileViewController.swift */,
+				3B2348F0209F53F30041A770 /* MyTasksViewController.swift */,
+				3B76B86D20979F0E000438C9 /* OMIDCODEViewController.swift */,
 				3B76B8652096D4F9000438C9 /* PaymentViewController.swift */,
 				3B210D852095B71D00A5CF84 /* ProductListViewController.swift */,
 				3B210DAA2096065000A5CF84 /* ProductViewController.swift */,
+				41E2FF4C209C43AA00CB8111 /* QRCODEViewController.swift */,
 				3B210D872095B82800A5CF84 /* Service */,
 				3B210D922095CBEB00A5CF84 /* Table */,
+				3B2348EA209E23270041A770 /* TaskDetailViewController.swift */,
 				3B210D6A2095826300A5CF84 /* uguta.xcdatamodeld */,
 				3B210D652095826200A5CF84 /* ViewController.swift */,
-				3B76B86D20979F0E000438C9 /* OMIDCODEViewController.swift */,
-				41E2FF4C209C43AA00CB8111 /* QRCODEViewController.swift */,
-				3B2348E4209D87FA0041A770 /* FillTaskViewController.swift */,
-				3B2348EA209E23270041A770 /* TaskDetailViewController.swift */,
 			);
 			path = ubuilder;
 			sourceTree = "<group>";
@@ -231,6 +241,8 @@
 				3B210D992095CD1E00A5CF84 /* TableCell */,
 				3B210D932095CBF900A5CF84 /* TableAdapter.swift */,
 				3B210D972095CC7E00A5CF84 /* TableCell.swift */,
+				3B2348EC209F50F80041A770 /* TableHAdapter.swift */,
+				3B2348EE209F51B70041A770 /* GroupItem.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -444,6 +456,7 @@
 				3B210D8B2095BB6C00A5CF84 /* ApiModel.swift in Sources */,
 				3B76B8682096D65F000438C9 /* BluetoothViewController.swift in Sources */,
 				3B210DB320962B7400A5CF84 /* History.swift in Sources */,
+				3B2348F1209F53F30041A770 /* MyTasksViewController.swift in Sources */,
 				3B76B86C20970461000438C9 /* MyProfileViewController.swift in Sources */,
 				3B210D942095CBF900A5CF84 /* TableAdapter.swift in Sources */,
 				3B210DA72096051D00A5CF84 /* User.swift in Sources */,
@@ -452,7 +465,10 @@
 				3B210D662095826200A5CF84 /* ViewController.swift in Sources */,
 				3B210DA22095D59400A5CF84 /* ProductTableViewCell.swift in Sources */,
 				3B210DAB2096065000A5CF84 /* ProductViewController.swift in Sources */,
+				3B2348F3209F60700041A770 /* MyItemsViewController.swift in Sources */,
+				3B2348EF209F51B70041A770 /* GroupItem.swift in Sources */,
 				3B210D6C2095826300A5CF84 /* uguta.xcdatamodeld in Sources */,
+				3B2348ED209F50F80041A770 /* TableHAdapter.swift in Sources */,
 				3B210D962095CC2A00A5CF84 /* IObject.swift in Sources */,
 				3B210DB020962B4900A5CF84 /* HistoryTableViewCell.swift in Sources */,
 				3B76B8662096D4F9000438C9 /* PaymentViewController.swift in Sources */,

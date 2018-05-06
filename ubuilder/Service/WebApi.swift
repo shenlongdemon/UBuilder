@@ -29,6 +29,7 @@ class WebApi{
     static let GET_ITEM_BY_QRCODE = "\(WebApi.HOST)/api/sellrecognizer/getItemByQRCode"
     static let LOGIN = "\(WebApi.HOST)/api/sellrecognizer/login"
     static let GET_ITEMS_BY_USERID = "\(WebApi.HOST)/api/sellrecognizer/getItemsByOwnerId"
+    
     static let ADD_ITEM = "\(WebApi.HOST)/api/sellrecognizer/insertItem"
     static let PUBLISH_SELL = "\(WebApi.HOST)/api/sellrecognizer/publishSell"
     static let PAYMENT = "\(WebApi.HOST)/api/sellrecognizer/payment"
@@ -44,12 +45,35 @@ class WebApi{
     static let ADD_TASK = "\(WebApi.HOST)/api/ubuilder/addTask"
     static let GET_PROJECT_BY_ID = "\(WebApi.HOST)/api/ubuilder/getProjectById"
     static let GET_PROJECT_OR_TASK_BY_QRCODE = "\(WebApi.HOST)/api/ubuilder/getProjectOrTaskByQRCode"
+    static let GET_TASKS_BY_OWNER_ID = "\(WebApi.HOST)/api/ubuilder/getTasksByOwnerId"
 
+    static let GET_FREE_ITEMS_BY_USERID = "\(WebApi.HOST)/api/ubuilder/getFreeItemsByOwnerId"
+    
+    
     
     static func manager()-> SessionManager{
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 180
         return manager
+    }
+    static func getTasksByOwnerId(id: String, completion: @escaping (_ list:[Project])->Void){
+        let url = URL(string: "\(WebApi.GET_TASKS_BY_OWNER_ID)?id=\(id)&pageNum=1&pageSize=10000")
+        WebApi.manager().request(url!)
+            .responseJSON { (data) in
+                
+                guard let apiModel : ApiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) else {
+                    completion([])
+                    return
+                }
+                if(apiModel.Status == 1){
+                    let items : [Project] = Mapper<Project>().mapArray(JSONObject: apiModel.Data) ?? []
+                    completion(items)
+                }
+                else {
+                    completion([])
+                }
+                
+        }
     }
     static func getProjectsByOwnerId(userId: String, completion: @escaping (_ list:[Project])->Void){
         let url = URL(string: "\(WebApi.GET_PROJECTS_BY_USERID)?ownerId=\(userId)&pageNum=1&pageSize=10000")
@@ -521,6 +545,26 @@ class WebApi{
                         let item : Item = strJSON.cast()!
                         items.append(item)
                     }
+                    completion(items)
+                }
+                else {
+                    completion([])
+                }
+                
+        }
+    }
+    static func getFreeItemsByOwnerId(userId: String, completion: @escaping (_ list:[Item])->Void){
+        let url = URL(string: "\(WebApi.GET_FREE_ITEMS_BY_USERID)?ownerId=\(userId)&pageNum=1&pageSize=10000")
+        WebApi.manager().request(url!)
+            .responseJSON { (data) in
+                
+                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) as? ApiModel else {
+                    completion([])
+                    return
+                }
+                
+                if(apiModel.Status == 1){
+                    var items : [Item] = Mapper<Item>().mapArray(JSONObject: apiModel.Data) ?? []                    
                     completion(items)
                 }
                 else {

@@ -15,4 +15,7 @@ class IObject{
     func getId() -> String {
         return self.id
     }
+    func toString() -> String {
+        return ""
+    }
 }

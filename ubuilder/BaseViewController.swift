@@ -11,7 +11,7 @@ import UIKit
 class BaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        self.view.backgroundColor = #colorLiteral(red: 0.9826761487, green: 0.9924056155, blue: 0.9924056155, alpha: 1)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,5 +38,8 @@ class BaseViewController: UIViewController {
         self.dismiss(animated: true, completion: {});
         self.navigationController?.popViewController(animated: true);
     }
+    func back() {
+        self.navigationController?.popViewController(animated: true)
 
+    }
 }

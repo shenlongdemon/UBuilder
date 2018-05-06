@@ -14,6 +14,8 @@ class TaskDetailViewController: BaseViewController {
     @IBOutlet weak var txtType: UITextField!
     @IBOutlet weak var txtProject: UITextField!
     
+    @IBOutlet weak var btnAdd: BaseButton!
+    @IBOutlet weak var lbOwner: UILabel!
     @IBOutlet weak var txtPrice: UITextField!
     @IBOutlet weak var txtTask: UITextField!
     var project: Project!
@@ -21,13 +23,19 @@ class TaskDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imgImage.image = Util.getImage(data64: self.task.owner.image)
+        self.lbOwner.text = "\(self.task.owner.firstName) \(self.task.owner.lastName)"
         self.txtType.text = self.project.type.value
          self.txtProject.text = self.project.name
         self.txtTask.text = self.task.name
         self.txtPrice.text = self.task.price
+        self.loadInfo()
         // Do any additional setup after loading the view.
     }
-
+    func loadInfo()  {
+        let user  = Store.getUser()!
+        self.btnAdd.isHidden = user.id != task.id
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

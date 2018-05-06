@@ -24,7 +24,9 @@ class Project: IObject, Mappable {
     required init?(map: Map) {
         
     }
-    
+    override func toString() -> String {
+        return self.name
+    }
     func mapping(map: Map) {
         self.id <- map["id"]
         self.name     <- map["name"]

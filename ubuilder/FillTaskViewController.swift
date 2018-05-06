@@ -37,7 +37,7 @@ class FillTaskViewController: BaseViewController, QRCodeReaderViewControllerDele
         super.viewDidLoad()
         self.txtType.text = self.item.type.value
         self.txtProjectName.text = self.item.name
-        
+        self.progress.stopAnimating()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(startQRCode(tapGestureRecognizer:)))
         self.imgImage.isUserInteractionEnabled = true
         self.imgImage.addGestureRecognizer(tapGestureRecognizer)
@@ -51,7 +51,17 @@ class FillTaskViewController: BaseViewController, QRCodeReaderViewControllerDele
     
     @objc func startQRCode(tapGestureRecognizer: UITapGestureRecognizer)
     {
+        guard checkScanPermissions() else { return }
+        self.isScanning = true
+        readerVC.modalPresentationStyle = .formSheet
+        readerVC.delegate               = self
         
+        readerVC.completionBlock = { (result: QRCodeReaderResult?) in
+            if let result = result {
+                print("Completion with result: \(result.value) of type \(result.metadataType)")
+            }
+        }
+        present(readerVC, animated: true, completion: nil)
     }
     func prepareModel(item: Project)  {
         self.item = item
@@ -88,20 +98,22 @@ class FillTaskViewController: BaseViewController, QRCodeReaderViewControllerDele
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.getEmployee(qrCode: "11351cdb-b791-43a0-a829-880ca3a279ad");
+        //self.getEmployee(qrCode: "11351cdb-b791-43a0-a829-880ca3a279ad");
     }
     @IBAction func save(_ sender: Any) {
         let task : Task = Task()
         task.name = txtTaskName.text!
         task.price = txtPrice.text!
-        task.owner = self.employee!        
+        task.owner = self.employee!
+        self.progress.startAnimating()
         WebApi.addTask(projectId: self.item.id, task: task) { (done) in
             if done {
-                
+                self.navigationController?.popViewController(animated: true)
             }
             else {
-                
+                Util.showOKAlert(VC: self, message: "Error")
             }
+            self.progress.stopAnimating()
         }
     }
     /*

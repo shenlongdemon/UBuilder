@@ -26,15 +26,18 @@ class ProductViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.progress.stopAnimating()
-        self.imgImage.image = self.item.getImage()
-        self.lbName.text = self.item.name
-        self.lbPrice.text = "\(self.item.getTotalCost())"
-        self.lbType.text = self.item.type.value
+        
         // Do any additional setup after loading the view.
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showQRCode(tapGestureRecognizer:)))
         self.imgImage.isUserInteractionEnabled = true
         self.imgImage.addGestureRecognizer(tapGestureRecognizer)
         self.initTable()
+    }
+    func loadProject(){
+        self.imgImage.image = self.item.getImage()
+        self.lbName.text = self.item.name
+        self.lbPrice.text = "\(self.item.getTotalCost())"
+        self.lbType.text = self.item.type.value
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -67,6 +70,8 @@ class ProductViewController: BaseViewController {
         self.tableView.reloadData()
         WebApi.getProjectById(id: self.item.id) { (p) in
             if let proj = p {
+                self.item = proj
+                self.loadProject()
                 self.items.addObjects(from: proj.module.tasks)
                 self.tableView.reloadData()                
             }

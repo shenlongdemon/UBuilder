@@ -17,12 +17,12 @@ class MyDocumentsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initTable()
-        loadData()
+        
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        loadData()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

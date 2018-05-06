@@ -91,12 +91,12 @@ class FillItemViewController: BaseViewController, UIImagePickerControllerDelegat
         Util.getUesrInfo { (history) in
             item.owner = history
             WebApi.addProject(item: item, completion: { (project) in
-//                if (done){
-//                    self.bactToRoot()
-//                }
-//                else{
-//                    Util.showOKAlert(VC: self, message: "Cannot add item")
-//                }
+                if let proj = project {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                else{
+                    Util.showOKAlert(VC: self, message: "Cannot add project")
+                }
                 self.progress.stopAnimating()
                 
             })
