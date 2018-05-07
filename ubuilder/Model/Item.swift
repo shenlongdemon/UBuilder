@@ -138,6 +138,7 @@ class Task: IObject, Mappable {
     var name: String = ""
     var price: String = ""
     var time: Int64 = Util.getCurrentMilitime()
+    var material: Material = Material()
     override init() {
         
     }
@@ -151,6 +152,20 @@ class Task: IObject, Mappable {
         self.code <- map["code"]
         self.price <- map["price"]
         self.owner <- map["owner"]
+        self.material <- map["material"]
     }
 }
-
+class Material: Mappable {
+    
+    var items: [Item] = []
+    init() {
+        
+    }
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        self.items <- map["items"]
+    }
+}

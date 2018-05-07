@@ -1113,6 +1113,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C0q-Cc-Yge">
                                 <rect key="frame" x="10" y="282" width="355" height="326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NyQ-ZV-8Oi" customClass="ProductTableViewCell" customModule="ubuilder" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="355" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NyQ-ZV-8Oi" id="SVe-eA-9Nc">
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rss-Ts-Aek">
                                 <rect key="frame" x="30" y="178" width="315" height="2"/>
@@ -1158,6 +1168,28 @@
                                     <segue destination="jby-MK-hMh" kind="show" identifier="myitems" id="FDg-y0-JRA"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9dT-PF-ij9">
+                                <rect key="frame" x="177.5" y="302" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIO-iw-wgF" customClass="BaseButton" customModule="ubuilder" customModuleProvider="target">
+                                <rect key="frame" x="124.5" y="578" width="125" height="30"/>
+                                <color key="backgroundColor" red="0.004873021971" green="0.78808617589999996" blue="0.65998351570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="oqM-Jj-df5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="COMPLETE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="complete:" destination="rma-af-2fy" eventType="touchUpInside" id="ndl-d4-mYd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1170,10 +1202,12 @@
                             <constraint firstItem="HXk-za-aI4" firstAttribute="centerY" secondItem="Ee3-MK-30K" secondAttribute="centerY" id="5pO-hw-Gz1"/>
                             <constraint firstItem="87t-QE-jhh" firstAttribute="leading" secondItem="2G7-aI-NjN" secondAttribute="leading" constant="10" id="6xp-Lv-boC"/>
                             <constraint firstItem="r3Q-2f-s1P" firstAttribute="leading" secondItem="iuk-nP-Dvh" secondAttribute="leading" constant="30" id="AX0-0t-6m2"/>
+                            <constraint firstItem="2G7-aI-NjN" firstAttribute="bottom" secondItem="OIO-iw-wgF" secondAttribute="bottom" constant="10" id="Bpn-at-zJx"/>
                             <constraint firstItem="2G7-aI-NjN" firstAttribute="trailing" secondItem="HYE-Qs-Vfu" secondAttribute="trailing" constant="15" id="CGD-c1-lqT"/>
                             <constraint firstItem="C0q-Cc-Yge" firstAttribute="leading" secondItem="2G7-aI-NjN" secondAttribute="leading" constant="10" id="DMZ-Gg-usY"/>
                             <constraint firstItem="2G7-aI-NjN" firstAttribute="trailing" secondItem="sxX-LQ-8CX" secondAttribute="trailing" constant="10" id="Duh-77-QZQ"/>
                             <constraint firstItem="tm3-Qm-TYj" firstAttribute="width" secondItem="z5X-b9-fBh" secondAttribute="width" id="EDL-D8-3N4"/>
+                            <constraint firstItem="OIO-iw-wgF" firstAttribute="centerX" secondItem="2G7-aI-NjN" secondAttribute="centerX" id="Fnc-Rx-Hfc"/>
                             <constraint firstItem="RvK-89-B6P" firstAttribute="leading" secondItem="2G7-aI-NjN" secondAttribute="leading" constant="10" id="Gxd-2Z-lW7"/>
                             <constraint firstItem="2G7-aI-NjN" firstAttribute="trailing" secondItem="HXk-za-aI4" secondAttribute="trailing" constant="10" id="IT9-fq-zFb"/>
                             <constraint firstItem="rss-Ts-Aek" firstAttribute="leading" secondItem="2G7-aI-NjN" secondAttribute="leading" constant="30" id="L2p-zZ-rRk"/>
@@ -1187,7 +1221,9 @@
                             <constraint firstItem="HXk-za-aI4" firstAttribute="leading" secondItem="Ee3-MK-30K" secondAttribute="trailing" constant="10" id="cn7-qf-d6d"/>
                             <constraint firstItem="HvI-6d-ACf" firstAttribute="leading" secondItem="HYE-Qs-Vfu" secondAttribute="leading" id="dTA-aX-7qP"/>
                             <constraint firstItem="HYE-Qs-Vfu" firstAttribute="centerY" secondItem="z5X-b9-fBh" secondAttribute="centerY" id="de4-2V-gsc"/>
+                            <constraint firstItem="9dT-PF-ij9" firstAttribute="centerX" secondItem="2G7-aI-NjN" secondAttribute="centerX" id="fIq-0P-Tay"/>
                             <constraint firstItem="RvK-89-B6P" firstAttribute="centerY" secondItem="tm3-Qm-TYj" secondAttribute="centerY" id="gWh-5r-FWx"/>
+                            <constraint firstItem="OIO-iw-wgF" firstAttribute="width" secondItem="iuk-nP-Dvh" secondAttribute="width" multiplier="1:3" id="iP0-sM-7GI"/>
                             <constraint firstItem="Ee3-MK-30K" firstAttribute="width" secondItem="Ee3-MK-30K" secondAttribute="height" multiplier="1:1" id="kfg-aQ-TtA"/>
                             <constraint firstItem="z5X-b9-fBh" firstAttribute="width" secondItem="iuk-nP-Dvh" secondAttribute="width" multiplier="1:4" id="khz-I1-1rX"/>
                             <constraint firstItem="3GE-lr-wPu" firstAttribute="leading" secondItem="tm3-Qm-TYj" secondAttribute="trailing" constant="10" id="laH-OB-m2M"/>
@@ -1196,6 +1232,7 @@
                             <constraint firstItem="tm3-Qm-TYj" firstAttribute="top" secondItem="z5X-b9-fBh" secondAttribute="bottom" constant="10" id="ojI-iT-uGP"/>
                             <constraint firstItem="bQk-xH-imw" firstAttribute="top" secondItem="HYE-Qs-Vfu" secondAttribute="bottom" constant="2" id="p4p-GL-bHC"/>
                             <constraint firstItem="HvI-6d-ACf" firstAttribute="centerY" secondItem="tm3-Qm-TYj" secondAttribute="centerY" id="qum-We-Ndm"/>
+                            <constraint firstItem="9dT-PF-ij9" firstAttribute="top" secondItem="C0q-Cc-Yge" secondAttribute="top" constant="20" id="uvx-62-cUH"/>
                             <constraint firstItem="2G7-aI-NjN" firstAttribute="bottom" secondItem="sxX-LQ-8CX" secondAttribute="bottom" constant="10" id="vbm-zI-Hkn"/>
                             <constraint firstItem="3GE-lr-wPu" firstAttribute="centerY" secondItem="HvI-6d-ACf" secondAttribute="centerY" id="wKp-1l-bWE"/>
                             <constraint firstItem="Ee3-MK-30K" firstAttribute="centerX" secondItem="2G7-aI-NjN" secondAttribute="centerX" multiplier="1:2" id="wTh-WF-jTm"/>
@@ -1209,6 +1246,8 @@
                         <outlet property="btnAdd" destination="sxX-LQ-8CX" id="NWs-30-1MW"/>
                         <outlet property="imgImage" destination="Ee3-MK-30K" id="KWg-vs-a75"/>
                         <outlet property="lbOwner" destination="HXk-za-aI4" id="5Nw-w8-zJ5"/>
+                        <outlet property="progress" destination="9dT-PF-ij9" id="c9v-ba-FgU"/>
+                        <outlet property="tableView" destination="C0q-Cc-Yge" id="ygO-hW-H3G"/>
                         <outlet property="txtPrice" destination="HvI-6d-ACf" id="h0E-de-zSG"/>
                         <outlet property="txtProject" destination="HYE-Qs-Vfu" id="sUE-aw-eOY"/>
                         <outlet property="txtTask" destination="tm3-Qm-TYj" id="20F-iB-0NA"/>
@@ -1481,7 +1520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZoW-VU-Vc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6570" y="2466"/>
+            <point key="canvasLocation" x="6359" y="2447"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="fTT-PQ-26U">
@@ -1791,7 +1830,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="VRF-Vv-m1s"/>
         <segue reference="K0c-1y-1Cq"/>
-        <segue reference="m5I-y5-xEP"/>
+        <segue reference="KRm-CV-N0G"/>
         <segue reference="OzS-F2-PkU"/>
         <segue reference="1Mm-go-3Vm"/>
     </inferredMetricsTieBreakers>

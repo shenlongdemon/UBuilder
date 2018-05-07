@@ -295,7 +295,6 @@
 				3B210D5D2095826200A5CF84 /* Frameworks */,
 				3B210D5E2095826200A5CF84 /* Resources */,
 				55698C1F25567D214840BA3E /* [CP] Embed Pods Frameworks */,
-				A87D3E5CE3A0FF3743091F25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -412,21 +411,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ubuilder/Pods-ubuilder-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A87D3E5CE3A0FF3743091F25 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ubuilder/Pods-ubuilder-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

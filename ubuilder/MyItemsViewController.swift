@@ -14,6 +14,8 @@ class MyItemsViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var tableAdapter : TableAdapter!
     var items: NSMutableArray = NSMutableArray()
+    var task: Task!
+    var project:Project!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.progress.stopAnimating()
@@ -47,13 +49,31 @@ class MyItemsViewController: BaseViewController {
         
         self.tableAdapter = TableAdapter(items:self.items, cellIdentifier: cellIdentifier, cellHeight : ProductTableViewCell.height)
         self.tableAdapter.onDidSelectRowAt { (item) in
+            Util.showYesNoAlert(VC: self, message: "Do you want to use it?", yesHandle: { () in
+               self.addItem(item: item as! Item)
+            }) { () in
+                
+            }
+
             //self.performSegue(withIdentifier: "itemdetail", sender: item)
         }
         self.tableView.delegate = self.tableAdapter
         self.tableView.dataSource = self.tableAdapter
-        
     }
-
+    func addItem(item: Item){
+        WebApi.addItemIntoTask(projectId: self.project.id, taskId: self.task.id, item: item) { (proj) in
+            if let project = proj {
+                self.back()
+            }
+            else {
+                Util.showOKAlert(VC: self, message: "Cannot add item")
+            }
+        }
+    }
+    func prepareModel(task: Task, project: Project) {
+        self.task = task
+        self.project = project
+    }
     /*
     // MARK: - Navigation
 
