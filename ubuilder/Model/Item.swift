@@ -27,6 +27,12 @@ class Project: IObject, Mappable {
     override func toString() -> String {
         return self.name
     }
+    func getTaskDoneCount() -> Int{
+        let dones = self.module.tasks.filter { (task) -> Bool in
+            return task.done == true
+            }.count
+        return dones
+    }
     func mapping(map: Map) {
         self.id <- map["id"]
         self.name     <- map["name"]
@@ -41,8 +47,9 @@ class Project: IObject, Mappable {
         return Util.getImage(data64: self.image)
     }
     func getModuleCountStr() -> String {
+        let dones = getTaskDoneCount()
         let hasS = self.module.tasks.count == 1 ? "" : "s"
-        let str = "\(self.module.tasks.count) module\(hasS)"
+        let str = "\(dones)/\(self.module.tasks.count) module\(hasS)"
         return str
     }
     func getTotalCost() -> Int {
@@ -139,6 +146,7 @@ class Task: IObject, Mappable {
     var price: String = ""
     var time: Int64 = Util.getCurrentMilitime()
     var material: Material = Material()
+    var done: Bool = false
     override init() {
         
     }
@@ -153,6 +161,7 @@ class Task: IObject, Mappable {
         self.price <- map["price"]
         self.owner <- map["owner"]
         self.material <- map["material"]
+        self.done <- map["done"]
     }
 }
 class Material: Mappable {

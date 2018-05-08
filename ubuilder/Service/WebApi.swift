@@ -51,11 +51,32 @@ class WebApi{
     static let ADD_ITEM_INTO_TASK = "\(WebApi.HOST)/api/ubuilder/addItemIntoTask"
 
     
-    static let DONE_TASK = "\(WebApi.HOST)/api/ubuilder/doneTask?id={id}"
+    static let DONE_TASK = "\(WebApi.HOST)/api/ubuilder/doneTask?projectId={projectId}&taskId={taskId}"
+    static let GET_ITEMS_BY_TASK = "\(WebApi.HOST)/api/ubuilder/getItemsByTask?projectId={projectId}&taskId={taskId}"
+
     static func manager()-> SessionManager{
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 180
         return manager
+    }
+    static func getItemsByTask(projectId: String, taskId: String, completion: @escaping (_ list:[Item])->Void){
+        let url = URL(string: GET_ITEMS_BY_TASK.replacingOccurrences(of: "{projectId}", with: projectId).replacingOccurrences(of: "{taskId}", with: taskId))
+        WebApi.manager().request(url!)
+            .responseJSON { (data) in
+                
+                guard let apiModel : ApiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) else {
+                    completion([])
+                    return
+                }
+                if(apiModel.Status == 1){
+                    let items : [Item] = Mapper<Item>().mapArray(JSONObject: apiModel.Data) ?? []
+                    completion(items)
+                }
+                else {
+                    completion([])
+                }
+                
+        }
     }
     static func getTasksByOwnerId(id: String, completion: @escaping (_ list:[Project])->Void){
         let url = URL(string: "\(WebApi.GET_TASKS_BY_OWNER_ID)?id=\(id)&pageNum=1&pageSize=10000")
@@ -76,8 +97,8 @@ class WebApi{
                 
         }
     }
-    static func doneTask(id: String, completion: @escaping (_ done:Bool)->Void){
-        let url = URL(string: "\(WebApi.DONE_TASK.replacingOccurrences(of: "{id}", with: id))")
+    static func doneTask(projectId: String, taskId: String, completion: @escaping (_ done:Bool)->Void){
+        let url = URL(string: WebApi.DONE_TASK.replacingOccurrences(of: "{projectId}", with: projectId).replacingOccurrences(of: "{taskId}", with: taskId))
         WebApi.manager().request(url!)
             .responseJSON { (data) in
                 
@@ -85,8 +106,7 @@ class WebApi{
                     completion(false)
                     return
                 }
-                if(apiModel.Status == 1){
-                    let items : [Project] = Mapper<Project>().mapArray(JSONObject: apiModel.Data) ?? []
+                if(apiModel.Status == 1){                    
                     completion(true)
                 }
                 else {
@@ -179,7 +199,7 @@ class WebApi{
         let parameters: Parameters = [
             "projectId": projectId,
             "taskId":taskId,
-            "item": item.toJSON()
+            "itemId": item.id
         ]
         let url = URL(string: WebApi.ADD_ITEM_INTO_TASK)
         

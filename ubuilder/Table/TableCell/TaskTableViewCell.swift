@@ -17,6 +17,7 @@ class TaskTableViewCell: TableCell {
     @IBOutlet weak var lbPrice: UILabel!
     var item : Task!
     
+    @IBOutlet weak var imgDone: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,6 +28,7 @@ class TaskTableViewCell: TableCell {
         self.lbTaskName.text = self.item.name
         self.lbPrice.text = self.item.price
         self.imgImage.image = Util.getImage(data64: self.item.owner.image)
+        self.imgDone.image = self.item.done ? #imageLiteral(resourceName: "donetask") : #imageLiteral(resourceName: "arrow")
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -42,7 +44,7 @@ class TaskTableViewCell: TableCell {
     
     static let nibName = String(describing:  TaskTableViewCell.self)
     static let reuseIdentifier = String(describing: TaskTableViewCell.self)
-    static let height : CGFloat = 140
+    static let height : CGFloat = 80
    
     
 }

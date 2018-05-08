@@ -1168,22 +1168,22 @@
                                     <segue destination="jby-MK-hMh" kind="show" identifier="myitems" id="FDg-y0-JRA"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9dT-PF-ij9">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9dT-PF-ij9">
                                 <rect key="frame" x="177.5" y="302" width="20" height="20"/>
+                                <color key="color" red="0.004873021971" green="0.78808617589999996" blue="0.65998351570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIO-iw-wgF" customClass="BaseButton" customModule="ubuilder" customModuleProvider="target">
-                                <rect key="frame" x="124.5" y="578" width="125" height="30"/>
-                                <color key="backgroundColor" red="0.004873021971" green="0.78808617589999996" blue="0.65998351570000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIO-iw-wgF" customClass="BaseButton" customModule="ubuilder" customModuleProvider="target">
+                                <rect key="frame" x="162" y="558" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="oqM-Jj-df5"/>
+                                    <constraint firstAttribute="width" constant="50" id="Mtd-Dx-dxE"/>
+                                    <constraint firstAttribute="height" constant="50" id="oqM-Jj-df5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="COMPLETE">
+                                <state key="normal" image="done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
+                                        <real key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -1223,7 +1223,6 @@
                             <constraint firstItem="HYE-Qs-Vfu" firstAttribute="centerY" secondItem="z5X-b9-fBh" secondAttribute="centerY" id="de4-2V-gsc"/>
                             <constraint firstItem="9dT-PF-ij9" firstAttribute="centerX" secondItem="2G7-aI-NjN" secondAttribute="centerX" id="fIq-0P-Tay"/>
                             <constraint firstItem="RvK-89-B6P" firstAttribute="centerY" secondItem="tm3-Qm-TYj" secondAttribute="centerY" id="gWh-5r-FWx"/>
-                            <constraint firstItem="OIO-iw-wgF" firstAttribute="width" secondItem="iuk-nP-Dvh" secondAttribute="width" multiplier="1:3" id="iP0-sM-7GI"/>
                             <constraint firstItem="Ee3-MK-30K" firstAttribute="width" secondItem="Ee3-MK-30K" secondAttribute="height" multiplier="1:1" id="kfg-aQ-TtA"/>
                             <constraint firstItem="z5X-b9-fBh" firstAttribute="width" secondItem="iuk-nP-Dvh" secondAttribute="width" multiplier="1:4" id="khz-I1-1rX"/>
                             <constraint firstItem="3GE-lr-wPu" firstAttribute="leading" secondItem="tm3-Qm-TYj" secondAttribute="trailing" constant="10" id="laH-OB-m2M"/>
@@ -1244,6 +1243,7 @@
                     </view>
                     <connections>
                         <outlet property="btnAdd" destination="sxX-LQ-8CX" id="NWs-30-1MW"/>
+                        <outlet property="btnDone" destination="OIO-iw-wgF" id="dTs-or-WgK"/>
                         <outlet property="imgImage" destination="Ee3-MK-30K" id="KWg-vs-a75"/>
                         <outlet property="lbOwner" destination="HXk-za-aI4" id="5Nw-w8-zJ5"/>
                         <outlet property="progress" destination="9dT-PF-ij9" id="c9v-ba-FgU"/>
@@ -1253,6 +1253,7 @@
                         <outlet property="txtTask" destination="tm3-Qm-TYj" id="20F-iB-0NA"/>
                         <outlet property="txtType" destination="z5X-b9-fBh" id="Jqp-cz-0Lq"/>
                         <segue destination="E3G-wL-QFA" kind="show" identifier="taskcode" id="K0c-1y-1Cq"/>
+                        <segue destination="1nD-kd-63b" kind="show" identifier="history" id="Ssv-QD-SNq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kci-Y1-IlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1473,7 +1474,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRN-4H-5CZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5441" y="3054"/>
+            <point key="canvasLocation" x="5790" y="3294"/>
         </scene>
         <!--My Items View Controller-->
         <scene sceneID="tCW-gt-DFY">
@@ -1531,7 +1532,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUJ-IW-ry4">
-                                <rect key="frame" x="10" y="30" width="355" height="627"/>
+                                <rect key="frame" x="10" y="74" width="355" height="534"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="676-56-g08">
@@ -1560,7 +1561,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkK-Ar-sLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7250" y="392"/>
+            <point key="canvasLocation" x="6852" y="3246"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fpj-hN-uCA">
@@ -1817,6 +1818,7 @@
         <image name="bluetooth_back" width="946" height="945"/>
         <image name="browse" width="30" height="30"/>
         <image name="documents" width="30" height="30"/>
+        <image name="done" width="500" height="500"/>
         <image name="fingerprint" width="317" height="399"/>
         <image name="library" width="512" height="512"/>
         <image name="logo" width="737" height="670"/>
