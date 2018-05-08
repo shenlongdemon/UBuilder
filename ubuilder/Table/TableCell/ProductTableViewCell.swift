@@ -10,14 +10,10 @@ import UIKit
 
 class ProductTableViewCell: TableCell {
     
-    @IBOutlet weak var lbPrice: UILabel!
     @IBOutlet weak var imgImage: UIImageView!
     @IBOutlet weak var lbName: UILabel!
-    
-    @IBOutlet weak var lbOwner: UILabel!
-    @IBOutlet weak var lbStatus: UILabel!
+
     @IBOutlet weak var lbCategory: UILabel!
-    @IBOutlet weak var imgNext: UIButton!
     
     var item : Item!
     override func awakeFromNib() {
@@ -27,31 +23,14 @@ class ProductTableViewCell: TableCell {
    
     override func initData(object: IObject) {
         self.item = object as! Item
+        
+        self.lbName.text = "\(self.item.name)"
+        self.imgImage.image = item.getImage()
+        self.lbCategory.text = self.item.category.value
+        
+        
+        
        
-        if (self.item.id.count > 0){
-            self.lbName.text = "\(self.item.name)"
-            self.imgImage.image = item.getImage()
-            self.lbCategory.text = self.item.category.value
-            
-            self.lbPrice.text = self.item.price
-            self.lbOwner.text = "\(self.item.owner.firstName ) \(self.item.owner.lastName )"
-            
-        }
-        else{
-            if let i = self.imgImage {
-                i.removeFromSuperview()
-            }
-            if let b = self.imgNext {
-                b.removeFromSuperview()
-            }            
-
-            self.lbCategory.text = self.item.name
-            self.lbName.text = ""           
-            self.lbPrice.text = ""
-            self.lbOwner.text = ""
-           
-            
-        }
     }
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -73,7 +52,7 @@ class ProductTableViewCell: TableCell {
     
     static let nibName = String(describing:  ProductTableViewCell.self)
     static let reuseIdentifier = String(describing: ProductTableViewCell.self)
-    static let height : CGFloat = 180
+    static let height : CGFloat = 80
     
 }
 

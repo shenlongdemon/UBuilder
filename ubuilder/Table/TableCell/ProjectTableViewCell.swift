@@ -50,6 +50,6 @@ class ProjectTableViewCell: TableCell {
     
     static let nibName = String(describing:  ProjectTableViewCell.self)
     static let reuseIdentifier = String(describing: ProjectTableViewCell.self)
-    static let height : CGFloat = 180
+    static let height : CGFloat = 80
     
 }
