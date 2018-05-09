@@ -11,7 +11,9 @@ import UIKit
 class ProductViewController: BaseViewController {
     
     
+    @IBOutlet weak var btnDone: BaseButton!
     
+    @IBOutlet weak var btnAdd: BaseButton!
     @IBOutlet weak var lbType: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imgImage: UIImageView!
@@ -30,14 +32,31 @@ class ProductViewController: BaseViewController {
         // Do any additional setup after loading the view.
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showQRCode(tapGestureRecognizer:)))
         self.imgImage.isUserInteractionEnabled = true
+        self.btnDone.isHidden = true
         self.imgImage.addGestureRecognizer(tapGestureRecognizer)
         self.initTable()
+        self.btnAdd.isHidden = true
     }
     func loadProject(){
         self.imgImage.image = self.item.getImage()
         self.lbName.text = self.item.name
         self.lbPrice.text = "\(self.item.getTotalCost())"
         self.lbType.text = self.item.type.value
+    }
+    @IBAction func finish(_ sender: Any) {
+        
+        Util.showYesNoAlert(VC: self, message: "All tasks are finished?", yesHandle: {
+            WebApi.doneProject(projectId: self.item.id, completion: { (done) in
+                if done {
+                    self.back()
+                }
+                else {
+                    Util.showOKAlert(VC: self, message: "Cannot complete")
+                }
+            })
+        }, noHandle: {})
+        
+       
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -63,17 +82,24 @@ class ProductViewController: BaseViewController {
     @IBAction func refresh(_ sender: Any) {
         self.loadData()
     }
-    
+    func isHideDoneButton() -> Bool {
+        var user = Store.getUser()!
+        return self.item.done == true || !(self.item.owner.id == user.id && self.item.isDoneAllTasks())
+    }
     func loadData() {
         self.progress.startAnimating()
         self.items.removeAllObjects()
         self.tableView.reloadData()
+        self.btnDone.isHidden = true
+        
         WebApi.getProjectById(id: self.item.id) { (p) in
             if let proj = p {
                 self.item = proj
                 self.loadProject()
                 self.items.addObjects(from: proj.module.tasks)
-                self.tableView.reloadData()                
+                self.tableView.reloadData()
+                self.btnDone.isHidden = self.isHideDoneButton()
+                self.btnAdd.isHidden = self.item.done
             }
             self.progress.stopAnimating()
         }

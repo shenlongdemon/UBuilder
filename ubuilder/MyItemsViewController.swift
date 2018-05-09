@@ -38,6 +38,10 @@ class MyItemsViewController: BaseViewController {
             self.progress.stopAnimating()
         }
     }
+    
+    @IBAction func refresh(_ sender: Any) {
+        self.loadData()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

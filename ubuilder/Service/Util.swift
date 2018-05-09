@@ -30,12 +30,13 @@ class Util {
         }
         return image
     }
-    static func showYesNoAlert(VC:UIViewController,  message:String?, yesHandle: @escaping (_ action:Void)->Void, noHandle: @escaping (_ action:Void)->Void){
+  
+    static func showYesNoAlert(VC:UIViewController,  message:String?, yesHandle: @escaping ()->Void, noHandle: @escaping ()->Void){
         
             let alert = UIAlertController(title: "uGuta", message: message ?? "", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(alert: UIAlertAction!) in
-                yesHandle(())
+                yesHandle()
                 
             }))
             alert.addAction(UIAlertAction(title: "No", style: .default, handler: {(alert: UIAlertAction!) in

@@ -17,6 +17,7 @@ class Project: IObject, Mappable {
     var image: String = ""
     var code: String = ""
     var owner: History!
+    var done: Bool = false
     var module: Module = Module()
     override init() {
         
@@ -40,6 +41,7 @@ class Project: IObject, Mappable {
         self.image   <- map["image"]
         self.description     <- map["description"]
         self.code     <- map["code"]
+        self.done     <- map["done"]
         self.owner   <- map["owner"]
         self.module   <- map["module"]
     }
@@ -55,6 +57,9 @@ class Project: IObject, Mappable {
     func getTotalCost() -> Int {
         let total = self.module.tasks.reduce(0) { $0 + $1.price.toInt() }
         return total
+    }
+    func isDoneAllTasks() -> Bool {
+        return self.module.tasks.count > 0 && self.module.tasks.count == self.getTaskDoneCount()
     }
 }
 class Item: IObject, Mappable {

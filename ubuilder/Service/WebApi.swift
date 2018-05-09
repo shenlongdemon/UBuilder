@@ -53,7 +53,9 @@ class WebApi{
     
     static let DONE_TASK = "\(WebApi.HOST)/api/ubuilder/doneTask?projectId={projectId}&taskId={taskId}"
     static let GET_ITEMS_BY_TASK = "\(WebApi.HOST)/api/ubuilder/getItemsByTask?projectId={projectId}&taskId={taskId}"
+    static let DONE_PROJECT = "\(WebApi.HOST)/api/ubuilder/doneProject?projectId={projectId}"
 
+    
     static func manager()-> SessionManager{
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 180
@@ -115,6 +117,25 @@ class WebApi{
                 
         }
     }
+    static func doneProject(projectId: String, completion: @escaping (_ done:Bool)->Void){
+        let url = URL(string: WebApi.DONE_PROJECT.replacingOccurrences(of: "{projectId}", with: projectId))
+        WebApi.manager().request(url!)
+            .responseJSON { (data) in
+                
+                guard let apiModel : ApiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) else {
+                    completion(false)
+                    return
+                }
+                if(apiModel.Status == 1){
+                    completion(true)
+                }
+                else {
+                    completion(false)
+                }
+                
+        }
+    }
+    
     static func getProjectsByOwnerId(userId: String, completion: @escaping (_ list:[Project])->Void){
         let url = URL(string: "\(WebApi.GET_PROJECTS_BY_USERID)?ownerId=\(userId)&pageNum=1&pageSize=10000")
         WebApi.manager().request(url!)

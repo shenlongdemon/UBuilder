@@ -20,6 +20,7 @@ class MyTasksViewController: BaseViewController {
         self.progress.stopAnimating()
         // Do any additional setup after loading the view.
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.loadData()
@@ -42,6 +43,9 @@ class MyTasksViewController: BaseViewController {
         self.tableView.delegate = self.tableAdapter
         self.tableView.dataSource = self.tableAdapter
         
+    }
+    @IBAction func refresh(_ sender: Any) {
+        self.loadData()
     }
     func loadData() {
         self.progress.startAnimating()

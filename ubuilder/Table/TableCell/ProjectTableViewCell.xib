@@ -80,6 +80,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imgImage" destination="8xi-yl-Tqe" id="Hlj-Fn-2b3"/>
+                <outlet property="imgNext" destination="2g7-BS-FIc" id="dvd-k5-r3K"/>
                 <outlet property="lbModuleCount" destination="wkc-jt-YbQ" id="k3A-80-vd1"/>
                 <outlet property="lbName" destination="NfV-nO-lW6" id="TST-SL-RFB"/>
                 <outlet property="lbTotalCost" destination="C0h-i6-Q6C" id="El3-x9-oHc"/>

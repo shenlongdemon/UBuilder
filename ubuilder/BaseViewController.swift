@@ -15,10 +15,12 @@ class BaseViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,5 +43,8 @@ class BaseViewController: UIViewController {
     func back() {
         self.navigationController?.popViewController(animated: true)
 
+    }
+    func refresh() -> Void {
+        
     }
 }

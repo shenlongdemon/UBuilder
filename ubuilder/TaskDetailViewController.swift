@@ -38,7 +38,7 @@ class TaskDetailViewController: BaseViewController {
         self.txtTask.text = self.task.name
         self.txtPrice.text = self.task.price
         let user  = Store.getUser()!
-        self.btnAdd.isHidden = self.task.done || user.id != task.owner.id
+        self.btnAdd.isHidden = self.project.done || self.task.done || user.id != task.owner.id
         self.btnDone.isHidden = self.task.done || user.id != self.project.owner.id
         // Do any additional setup after loading the view.
         
@@ -73,6 +73,9 @@ class TaskDetailViewController: BaseViewController {
            
             self.progress.stopAnimating()
         }
+    }
+    @IBAction func refresh(_ sender: Any) {
+        self.loadItems()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
