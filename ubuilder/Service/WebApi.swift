@@ -19,8 +19,8 @@ import Alamofire
 import ObjectMapper
 class WebApi{
     //static let HOST = "http://96.93.123.234:5000"
-    //static let HOST = "http://192.168.1.5:5000"
-    static let HOST = "http://192.168.79.84:5000"
+    static let HOST = "http://192.168.1.4:5000"
+    //static let HOST = "http://192.168.79.84:5000"
 
     static let GET_CATEGORIES = "\(WebApi.HOST)/api/sellrecognizer/getCategories"
 

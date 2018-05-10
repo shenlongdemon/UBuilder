@@ -98,7 +98,7 @@ class FillTaskViewController: BaseViewController, QRCodeReaderViewControllerDele
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.getEmployee(qrCode: "d1b3ebd6-0db5-47e1-8a4e-d7e4b60d0769");
+        //self.getEmployee(qrCode: "d1b3ebd6-0db5-47e1-8a4e-d7e4b60d0769");
     }
     @IBAction func save(_ sender: Any) {
         let task : Task = Task()
