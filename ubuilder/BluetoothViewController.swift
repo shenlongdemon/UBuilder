@@ -26,7 +26,7 @@ class BluetoothViewController: BaseViewController,CBCentralManagerDelegate, CBPe
         super.viewDidLoad()
         initTable()
         let opts = [CBCentralManagerOptionShowPowerAlertKey: true]
-        manager = CBCentralManager(delegate: self, queue: nil, options: opts)
+        //manager = CBCentralManager(delegate: self, queue: nil, options: opts)
         progress.stopAnimating()
     }
 

@@ -16,6 +16,9 @@ class QRCODEViewController: BaseViewController {
         super.viewDidLoad()
         let qrCode = QRCode(item!)
         self.imgImage.image = qrCode?.image
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(qrCodeImageTapped(tapGestureRecognizer:)))
+        self.imgImage.isUserInteractionEnabled = true
+        self.imgImage.addGestureRecognizer(tapGestureRecognizer)
         // Do any additional setup after loading the view.
     }
 
@@ -23,7 +26,12 @@ class QRCODEViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    @objc func qrCodeImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        WebApi.getDescriptionQRCode(code: self.item) { (description) in
+            Util.showOKAlert(VC: self, message: description);
+        }
+    }
 
     @IBAction func omidCode(_ sender: Any) {
         self.performSegue(withIdentifier: "omidcode", sender: self.item)

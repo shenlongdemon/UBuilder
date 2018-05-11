@@ -153,7 +153,7 @@ class Task: IObject, Mappable {
     var material: Material = Material()
     var done: Bool = false
     override init() {
-        
+        self.time = Util.getCurrentMilitime()
     }
     required init?(map: Map) {
         
@@ -167,6 +167,7 @@ class Task: IObject, Mappable {
         self.owner <- map["owner"]
         self.material <- map["material"]
         self.done <- map["done"]
+        self.time <- map["time"]
     }
 }
 class Material: Mappable {

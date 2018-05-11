@@ -117,6 +117,30 @@ class WebApi{
                 
         }
     }
+    static func getDescriptionQRCode(code: String, completion: @escaping (_ description: String )->Void){
+        let parameters: Parameters = [
+            "code": code
+        ]
+        let url = URL(string: WebApi.GET_DESCRIPTION_BY_QRCODE)
+        
+        WebApi.manager().request(url!, method: .post, parameters: parameters, encoding: URLEncoding.default)
+            .responseJSON { (data) in
+                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) as? ApiModel else {
+                    completion("Error")
+                    return
+                }
+                
+                if(apiModel.Status == 1){
+                    let description = apiModel.Data as? String ?? "Error"
+                    
+                    completion(description)
+                }
+                else {
+                    completion("Error")
+                }
+                
+        }
+    }
     static func doneProject(projectId: String, completion: @escaping (_ done:Bool)->Void){
         let url = URL(string: WebApi.DONE_PROJECT.replacingOccurrences(of: "{projectId}", with: projectId))
         WebApi.manager().request(url!)
@@ -275,31 +299,7 @@ class WebApi{
                 
         }
     }
-    static func getDescriptionQRCode(code: String, completion: @escaping (_ description: String )->Void){
-        let parameters: Parameters = [
-            "code": code
-            ]
-        let url = URL(string: WebApi.GET_DESCRIPTION_BY_QRCODE)
-        
-        WebApi.manager().request(url!, method: .post, parameters: parameters, encoding: URLEncoding.default)
-            .responseJSON { (data) in
-                guard let apiModel = Mapper<ApiModel>().map(JSONObject:data.result.value) as? ApiModel else {
-                    completion("Error")
-                    return
-                }
-                
-                if(apiModel.Status == 1){
-                    let description = apiModel.Data as! String
-                    
-                    completion(description)
-                }
-                else {
-                    completion("Error")
-                }
-                
-        }
-    }
-    
+   
     
     /*var userId = data.id;
      var user = data.user;*/
